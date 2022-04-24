@@ -1,5 +1,15 @@
 //Please don't look at this, it's just a three.js cube and a "pixel-placer" i wrote like 7 years ago
 
+onmousemove = function(e){
+	const color = generateColor();
+	var rgb = hslToRgb(frame/1000%1, 0.5, 0.5);
+	color.r = rgb[0] * 0.04;
+	color.g = rgb[1] * 0.04;
+	color.b = rgb[2] * 0.04;
+    splat(e.screenX/canvas.width, (canvas.height-e.clientY)/canvas.height, 0, 1, color);
+}
+
+
 //create scene
 const scene = new THREE.Scene();
 
@@ -8,7 +18,8 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camera.position.z = 5;
 
 //create renderer
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setClearColor( 0xffffff, 0);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.domElement.style.position = "absolute";
 renderer.domElement.style.top = 0;
@@ -39,13 +50,13 @@ const abientLight = new THREE.AmbientLight(0x444444);
 scene.add(abientLight);
 
 //create canvas
-var canvas = document.createElement("canvas");
-canvas.width = 1025;
-//canvas.width = 1920;
-canvas.height = 220;
-canvas.style.position = "absolute";
-canvas.style.zIndex = 99;
-document.body.insertBefore(canvas, document.body.childNodes[0]);
+var letterCanvas = document.createElement("canvas");
+letterCanvas.width = 1025;
+//letterCanvas.width = 1920;
+letterCanvas.height = 220;
+letterCanvas.style.position = "absolute";
+letterCanvas.style.zIndex = 99;
+document.body.insertBefore(letterCanvas, document.body.childNodes[0]);
 
 //reposition elements on resize
 window.onresize = resize;
@@ -62,7 +73,7 @@ function resize(){
 	camera.updateProjectionMatrix();
 	
 	//center letter canvas
-	canvas.style.left = (window.innerWidth / 2) - (canvas.width / 2) + "px";
+	letterCanvas.style.left = (window.innerWidth / 2) - (letterCanvas.width / 2) + "px";
 }
 resize();
 
@@ -125,7 +136,7 @@ var scale = 5;
 function drawFromPixelList(pixelList, posX, posY, colorHSL)
 {
 	//get canvas context
-	var context = canvas.getContext("2d");
+	var context = letterCanvas.getContext("2d");
 	//set color
 	//var color = hslToRgb((colorHSL[0] + 0.1 + frame/1000)%1, colorHSL[1], colorHSL[2])
 	var color = hslToRgb(colorHSL[0] + 0.64, colorHSL[1]+0.3, colorHSL[2]-0.01)
@@ -386,7 +397,7 @@ lastTime = getTime();
 
 		if (lastFrame < frame){//don't draw same frame twice
 			//clear canvas
-			canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+			letterCanvas.getContext('2d').clearRect(0, 0, letterCanvas.width, letterCanvas.height);
 			
 			//draw text
 			//Need- jkpqvxz
@@ -399,13 +410,23 @@ lastTime = getTime();
 			material.color.g = color[1];
 			material.color.b = color[2];
 			
+			
+			const ccolor = generateColor();
+			var rgb = hslToRgb(frame/1000%1, 0.5, 0.5);
+			ccolor.r = rgb[0] * 0.08;
+			ccolor.g = rgb[1] * 0.08;
+			ccolor.b = rgb[2] * 0.08;
+			var x = 0.5+Math.sin(time/100) * 0.04;
+			var y = 0.5+Math.cos(time/100) * 0.04;
+			splat(x, y, 0, 1, ccolor);
+			
 			//apply rotation to cube;
 			cube.rotation.x = Math.sin(time/10000) * 7;
 			cube.rotation.y = Math.sin(time/11111) * 10;
 			cube.rotation.z = Math.sin(time/13131) * 9;
 			
 			//render cube
-			renderer.render( scene, camera );
+			renderer.render(scene, camera);
 			
 			//update last frame
 			lastFrame = frame;
