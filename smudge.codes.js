@@ -1,5 +1,19 @@
 //Please don't look at this, it's just a three.js cube and a "pixel-placer" i wrote like 7 years ago
 
+<<<<<<< Updated upstream
+=======
+/*
+onmousemove = function(e){
+	const color = generateColor();
+	var rgb = hslToRgb(frame/1000%1, 0.5, 0.5);
+	color.r = rgb[0] * 0.1;
+	color.g = rgb[1] * 0.1;
+	color.b = rgb[2] * 0.1;
+    splat(e.clientX/canvas.width, (canvas.height-e.clientY)/canvas.height, 0, 1, color);
+}
+*/
+
+>>>>>>> Stashed changes
 //create scene
 const scene = new THREE.Scene();
 
@@ -399,6 +413,19 @@ lastTime = getTime();
 			material.color.g = color[1];
 			material.color.b = color[2];
 			
+<<<<<<< Updated upstream
+=======
+			
+			const ccolor = generateColor();
+			var rgb = hslToRgb(frame/1000%1, 0.5, 0.5);
+			ccolor.r = rgb[0] * 0.16;
+			ccolor.g = rgb[1] * 0.16;
+			ccolor.b = rgb[2] * 0.16;
+			var x = 0.5+Math.sin(time/100) * 0.04;
+			var y = 0.5+Math.cos(time/100) * 0.04;
+			splat(x, y, 0, 2, ccolor);
+			
+>>>>>>> Stashed changes
 			//apply rotation to cube;
 			cube.rotation.x = Math.sin(time/10000) * 7;
 			cube.rotation.y = Math.sin(time/11111) * 10;
