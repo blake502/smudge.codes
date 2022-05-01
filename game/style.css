@@ -1,0 +1,114 @@
+body { 
+	background: #008080;
+	background-size: auto;
+    background-position-x: center;
+	margin: 0px;
+	font-family: 'Roboto Mono', monospace;
+}
+
+main{
+	position: absolute;
+	left: 0%;
+	top: 0%;
+	right:0%;
+	bottom: 0%;
+	display: grid;
+	grid-template-areas:
+		"topBar topBar topBar topBar topBar"
+		"leftBar separatorLeft centerArea separatorRight rightBar"
+		"footer footer footer footer footer";
+	grid-template-columns: 2fr 12px 5fr 12px 2fr;
+	grid-template-rows: 28px auto 28px;
+}
+
+.title{
+	text-align: center;
+}
+
+header{
+	color: white;
+	grid-area: topBar;
+	background: #000;/* url(img/header.png); */
+}
+
+#leftBar{
+	grid-area: leftBar;
+	background: url(img/leftBarCorner.png) bottom left no-repeat,
+				url(img/leftBarBorder.png) repeat-y top left,
+				url(img/leftBarBottom.png) repeat-x bottom;
+	background-color: #ffffff;
+}
+
+#leftBarHeader{
+	height: 44px;
+	background: url(img/leftBarHeaderCap.png) top right no-repeat,
+				url(img/leftBarHeader.png) top left no-repeat,
+				/*url(img/consoleHeaderTile.png) top left repeat-x,*/
+				url(img/leftBarHeaderTile.png) repeat-x top;
+}
+
+#separatorLeft{
+	grid-area: separatorLeft; 
+	background: url(img/separatorLeftBottom.png) no-repeat bottom left,
+				url(img/separatorLeftTop.png) no-repeat top left,
+				url(img/separatorLeft.png) repeat-y;
+}
+
+#separatorRight{
+	grid-area: separatorRight; 
+	background: /*url(img/separatorRightBottom.png) no-repeat bottom left,*/
+				url(img/separatorRightTop.png) no-repeat top left,
+				url(img/separatorRight.png) repeat-y;
+}
+
+#centerArea{
+	grid-area: centerArea;
+}
+
+#console{
+	background: url(img/consoleHeaderCap.png) top right no-repeat,
+				url(img/consoleHeader.png) top left no-repeat,
+				url(img/consoleHeaderTile.png) top left repeat-x;
+	color: white;
+	background-color: #000;
+	padding-top: 22px;
+	padding-left: 2px;
+	right:0%;
+	left: 0%;
+	top: 0%;
+	height: 20%;
+}
+
+#rightBar{
+	grid-area: rightBar;
+}
+
+.button{
+	background: url(img/button.png) no-repeat;
+	margin-left: 2px;
+	margin-top: 4px;
+	width: 54px;
+	height: 22px;
+	padding-left: 6px;
+	margin-left: 16px;
+}
+
+#startButton{
+	margin-left: 0px;
+	background: url(img/startButton.png) no-repeat;
+}
+
+#timebox{
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+	text-align: center;
+	background: url(img/timebox.png) no-repeat;
+	width: 63px;
+	height: 22px;
+}
+
+footer{
+	grid-area: footer;
+	background: #000 url(img/footerTile.png);
+}
