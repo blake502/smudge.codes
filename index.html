@@ -23,6 +23,16 @@
 				bottom: 0.5%;
 				left: 0.5%;
 			}
+
+			#credit {
+				position: absolute;
+				font-family: 'Roboto Mono', monospace;
+				color: white;
+				z-index: 99;
+				bottom: 0.5%;
+				right: 0.5%;
+				text-align: right;
+			}
 			
 			#fluidcanvas {
 				position: absolute;
@@ -42,7 +52,7 @@
 	<body>
         <canvas id="fluidcanvas"></canvas>
 		<div id="info">
-			there is not much to see here. yet.
+			there is not much to see here. yet. 
 			</br>
 			visit me on 
 			<a href="http://ttv.smudge.codes" target="_blank">twitch</a>
@@ -52,6 +62,11 @@
 			<a href="http://discord.smudge.codes" target="_blank">discord</a>
 			or
 			<a href="http://steam.smudge.codes" target="_blank">steam</a>.
+		</div>
+		<div id="credit">
+			fluid sim by <a href="https://github.com/PavelDoGreat/WebGL-Fluid-Simulation" target="_blank">PavelDoGreat</a>. <a href="http://smudge.codes/license" target="_blank">license</a>
+			</br>
+			title graphic inspired by <a href="https://www.twitch.tv/witwix" target="_blank">witwix</a>'s artist (unknown, sorry)
 		</div>
 		<script src="three.js"></script>
 		<script src="fluid.js"></script>
